@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hortifruti - Lista de Mercado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4CAF50;
+            --primary-dark: #1b5e20;
+            --secondary: #FF9800;
+            --light: #f1f8e9;
+            --light-bg: #f8fdf3;
+            --dark: #1b5e20;
+            --gray: #f5f5f5;
+            --checked: #e8f5e9;
+            --text: #333;
+            --text-light: #777;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fdf3 0%, #e8f5e9 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+        }
+        
+        /* Logo personalizado */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-top: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo-image {
+            max-height: 80px;
+            width: auto;
+        }
+        
+        .subtitle {
+            color: var(--primary-light);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            max-width: 500px;
+            margin: 0 auto 25px;
+            line-height: 1.5;
+        }
+        
+        /* Controles */
+        .input-container {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 10px;
+            position: relative;
+        }
+        
+        #itemInput {
+            padding: 15px 20px;
+            flex-grow: 1;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--light-bg);
+            font-weight: 500;
+        }
+        
+        #itemInput:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        #addButton {
+            padding: 15px 25px;
+            background-color: var(--primary-light);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 130px;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+        
+        #addButton:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .enter-hint {
+            position: absolute;
+            top: -25px;
+            right: 0;
+            background: var(--primary-dark);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+        
+        .add-button:hover .enter-hint {
+            opacity: 1;
+        }
+        
+        /* Barra de pesquisa */
+        .search-container {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        #searchInput {
+            width: 100%;
+            padding: 15px 15px 15px 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--light-bg);
+        }
+        
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        /* Categorias */
+        .category-section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .section-title i {
+            color: var(--primary-light);
+        }
+        
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            background-color: white;
+            border: 2px solid var(--primary-light);
+            border-radius: 50px;
+            color: var(--primary-dark);
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .category-btn:hover {
+            background-color: var(--primary-light);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+        }
+        
+        /* Lista de itens */
+        .list-section {
+            margin-top: 30px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            padding: 18px 20px;
+            margin: 12px 0;
+            background-color: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--primary-light);
+        }
+        
+        li.checked {
+            background-color: var(--checked);
+            border-left-color: #a5d6a7;
+        }
+        
+        li.checked::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-left: 20px solid transparent;
+            border-top: 20px solid var(--primary-light);
+        }
+        
+        li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Imagens redondas */
+        .item-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .item-img i {
+            font-size: 20px;
+            color: var(--primary-light);
+        }
+        
+        .item-info {
+            flex-grow: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .item-name {
+            font-size: 17px;
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .item-name.checked {
+            text-decoration: line-through;
+            color: var(--text-light);
+        }
+        
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            height: 36px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .quantity-btn {
+            width: 32px;
+            height: 100%;
+            background: #f5f5f5;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 16px;
+            color: var(--text);
+        }
+        
+        .quantity-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 100%;
+            border: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            background: white;
+        }
+        
+        /* Botões de ação */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .check-btn, .delete-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: var(--transition);
+            border: none;
+        }
+        
+        .check-btn {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .check-btn:hover {
+            background-color: #f57c00;
+            transform: scale(1.1);
+        }
+        
+        .check-btn.checked {
+            background-color: #4CAF50;
+        }
+        
+        .delete-btn {
+            background-color: #ef5350;
+            color: white;
+        }
+        
+        .delete-btn:hover {
+            background-color: #d32f2f;
+            transform: scale(1.1);
+        }
+        
+        /* Mensagem lista vazia */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-style: italic;
+            border-radius: 14px;
+            background: var(--light-bg);
+            margin-top: 20px;
+        }
+        
+        .empty-state i {
+            font-size: 48px;
+            color: #a5d6a7;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .input-container {
+                flex-direction: column;
+            }
+            
+            #addButton {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            
+            li {
+                flex-wrap: wrap;
+                padding: 15px;
+            }
+            
+            .item-controls {
+                width: 100%;
+                margin-top: 12px;
+                padding-top: 12px;
+                border-top: 1px dashed #e0e0e0;
+                justify-content: space-between;
+            }
+            
+            .action-buttons {
+                margin-left: auto;
+            }
+            
+            .enter-hint {
+                display: none;
+            }
+            
+            .item-img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .logo-image {
+                max-height: 60px;
+            }
+            
+            .header {
+                margin-bottom: 15px;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .category-buttons {
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 8px 12px;
+            }
+            
+            .item-img {
+                width: 36px;
+                height: 36px;
+            }
+        }
+        
+        /* Animação para destaque */
+        @keyframes highlight {
+            0% { background-color: #e8f5e9; }
+            100% { background-color: white; }
+        }
+        
+        .highlight {
+            animation: highlight 1s ease-in-out;
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        li {
+            animation: fadeIn 0.4s ease-out;
+        }
+        
+        /* Scroll personalizado */
+        #listaItens {
+            max-height: 50vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        
+        #listaItens::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        #listaItens::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        #listaItens::-webkit-scrollbar-thumb {
+            background: #c8e6c9;
+            border-radius: 4px;
+        }
+        
+        #listaItens::-webkit-scrollbar-thumb:hover {
+            background: #a5d6a7;
+        }
+        
+        /* Estatísticas */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding: 10px;
+            background: var(--light-bg);
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 18px;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho com logo personalizado -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="imagens/logo.png" alt="Logo Hortifruti" class="logo-image">
+            </div>
+            <p class="subtitle">Sua lista de mercado saudável e organizada</p>
+        </div>
+        
+        <!-- Campo de adicionar itens -->
+        <div class="input-container">
+            <input type="text" id="itemInput" placeholder="O que você precisa comprar? Ex: Banana, Tomate..." />
+            <button id="addButton" onclick="addItem()" class="add-button">
+                <i class="fas fa-plus"></i> Adicionar
+                <span class="enter-hint">Pressione Enter</span>
+            </button>
+        </div>
+        
+        <!-- Campo de busca -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Buscar itens na sua lista..." />
+        </div>
+        
+        <!-- Categorias -->
+        <div class="category-section">
+            <div class="section-title">
+                <i class="fas fa-tags"></i>
+                <h2>Categorias Rápidas</h2>
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn" onclick="suggestItem('Maçã')">
+                    <i class="fas fa-apple-alt"></i> Frutas
+                </button>
+                <button class="category-btn" onclick="suggestItem('Alface')">
+                    <i class="fas fa-leaf"></i> Verduras
+                </button>
+                <button class="category-btn" onclick="suggestItem('Cenoura')">
+                    <i class="fas fa-carrot"></i> Legumes
+                </button>
+                <button class="category-btn" onclick="suggestItem('Ovos')">
+                    <i class="fas fa-egg"></i> Outros
+                </button>
+            </div>
+        </div>
+        
+        <!-- Lista de itens -->
+        <div class="list-section">
+            <div class="section-title">
+                <i class="fas fa-list"></i>
+                <h2>Sua Lista de Compras</h2>
+            </div>
+            <ul id="listaItens"></ul>
+        </div>
+        
+        <!-- Estatísticas -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-value" id="totalItems">0</div>
+                <div class="stat-label">Itens</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalQuantity">0</div>
+                <div class="stat-label">Unidades</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="checkedItems">0</div>
+                <div class="stat-label">Conferidos</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>Sua lista é salva automaticamente! ✨</p>
+        </div>
+    </div>
+
+    <script>
+        // Objeto de imagens dos itens - chaves SEM acento e SEM espaço
+        const itemImages = {
+            'maca': 'https://organicodiniz.com.br/wp-content/uploads/2022/04/Maca-red.png',
+            'banana': 'https://vallefrutas.com.br/wp-content/uploads/banana-nanica.png',
+            'laranja': 'https://apoioentrega.vteximg.com.br/arquivos/ids/875228/2131_0.png?v=638699615920200000',
+            'tomate': 'https://img.freepik.com/fotos-gratis/tomate-isolado_2829-17582.jpg?semt=ais_hybrid&w=740',
+            'alface': 'https://phygital-files.mercafacil.com/good-bom/uploads/produto/alface_crespa_un_7f503cee-428b-478b-b8f0-f0e3f59ebcaa.jpeg',
+            'cenoura': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCCuyird4GPGaxa7AO9plyOLGi_NlwaLN5Uw&s',
+            'cebola': 'https://muffatosupermercados.vtexassets.com/arquivos/ids/370799-800-auto?v=638319619235170000&width=800&height=auto&aspect=true',
+            'batata': 'https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/01325ea5fd7fd4ecab7e209393bf6188.jpg',
+            'ovos': 'https://acdn-us.mitiendanube.com/stores/002/296/660/products/ovo1-6b57de61281a3d3cf016841052104265-1024-1024.jpg',
+            'pao': 'https://superprix.vteximg.com.br/arquivos/ids/213294-600-600/Pao-Frances-Delix-60g--1-unidade-.jpg?v=638188859210930000',
+            'leite': 'https://foodsafetybrazil.org/wp-content/uploads/2023/12/sa_1703631598_Formol_no_Leite_nao.png',
+            'queijo': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk2KV2bOoz9pTpwp3Le1rVhO8ctFZ4kO7n-Q&s',
+            'abacaxi': 'https://cdn.awsli.com.br/600x700/305/305913/produto/10189815/abacaxi-1441a8b7.jpg',
+            'mamao': 'https://www.peterpaiva.com.br/wp-content/uploads/2014/11/FA0385-Papaya.jpg',
+            'pepino': 'https://static.vecteezy.com/system/resources/thumbnails/029/720/727/small_2x/cucumber-transparent-background-png.png',
+            'morango': 'https://static.vecteezy.com/system/resources/thumbnails/039/633/656/small/ai-generated-strawberries-with-strawberries-leaves-on-the-floor-healthy-organic-berry-natural-ingredients-concept-ai-generated-transparency-with-shadow-png.png',
+            'abobrinha': 'https://ibassets.com.br/ib.item.image.large/l-e716c69cf0164c7ea7da04b434812d07.png',
+            'brocolis': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS87cvnFld8h_R11IOohgqX2UiIpvZgZx3M_Q&s'
+        };
+
+        function normalizeKey(text) {
+            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "");
+        }
+
+        // Função para salvar a lista no localStorage
+        function saveList() {
+            const lista = document.getElementById('listaItens');
+            const items = [];
+            
+            // Coletar todos os itens da lista
+            lista.querySelectorAll('li').forEach(li => {
+                const name = li.querySelector('.item-name').textContent;
+                const checked = li.classList.contains('checked');
+                const quantity = li.querySelector('.quantity-input').value;
+                items.push({ name, checked, quantity });
+            });
+            
+            // Salvar no localStorage
+            localStorage.setItem('shoppingList', JSON.stringify(items));
+            updateStats();
+        }
+
+        // Função para carregar a lista do localStorage
+        function loadList() {
+            const saved = localStorage.getItem('shoppingList');
+            if (!saved) return;
+            
+            const items = JSON.parse(saved);
+            const lista = document.getElementById('listaItens');
+            
+            // Limpar lista atual
+            lista.innerHTML = '';
+            
+            // Adicionar cada item salvo
+            items.forEach(item => {
+                addItemToList(item.name, item.checked, item.quantity);
+            });
+            
+            checkEmptyState();
+            updateStats();
+        }
+
+        // Função para verificar se um item já existe na lista
+        function itemExists(name) {
+            const lista = document.getElementById('listaItens');
+            const normalizedName = normalizeKey(name);
+            
+            for (const li of lista.querySelectorAll('li')) {
+                const itemName = li.querySelector('.item-name').textContent;
+                if (normalizeKey(itemName) === normalizedName) {
+                    return li;
+                }
+            }
+            
+            return null;
+        }
+
+        // Função para mover um item para o topo da lista
+        function moveItemToTop(itemElement) {
+            const lista = document.getElementById('listaItens');
+            if (lista.firstChild) {
+                lista.insertBefore(itemElement, lista.firstChild);
+            } else {
+                lista.appendChild(itemElement);
+            }
+        }
+
+        // Função para mover um item marcado para o final da lista
+        function moveCheckedToBottom(itemElement) {
+            const lista = document.getElementById('listaItens');
+            lista.appendChild(itemElement);
+        }
+
+        // Função para adicionar item à lista (com estado de verificação e quantidade)
+        function addItemToList(name, isChecked = false, quantity = 1) {
+            const lista = document.getElementById('listaItens');
+            const key = normalizeKey(name);
+            const hasImage = itemImages.hasOwnProperty(key);
+            const imgSrc = hasImage ? itemImages[key] : "";
+            const iconClass = hasImage ? "" : getIconForItem(name);
+
+            // Criar elementos do item
+            const li = document.createElement('li');
+
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'item-img';
+            
+            if (hasImage) {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.alt = name;
+                imgContainer.appendChild(img);
+            } else {
+                const icon = document.createElement('i');
+                icon.className = iconClass;
+                imgContainer.appendChild(icon);
+            }
+
+            const itemInfo = document.createElement('div');
+            itemInfo.className = 'item-info';
+            
+            const span = document.createElement('span');
+            span.textContent = name;
+            span.className = 'item-name';
+            
+            // Adicionar classe 'checked' se necessário
+            if (isChecked) {
+                span.classList.add('checked');
+                li.classList.add('checked');
+            }
+
+            itemInfo.appendChild(span);
+
+            // Container para quantidade
+            const quantityContainer = document.createElement('div');
+            quantityContainer.className = 'quantity-container';
+            
+            const decreaseBtn = document.createElement('button');
+            decreaseBtn.className = 'quantity-btn';
+            decreaseBtn.textContent = '-';
+            decreaseBtn.onclick = () => {
+                const input = quantityContainer.querySelector('.quantity-input');
+                if (input.value > 1) {
+                    input.value = parseInt(input.value) - 1;
+                    saveList();
+                }
+            };
+            
+            const quantityInput = document.createElement('input');
+            quantityInput.type = 'number';
+            quantityInput.className = 'quantity-input';
+            quantityInput.value = quantity;
+            quantityInput.min = '1';
+            quantityInput.onchange = () => {
+                if (quantityInput.value < 1) quantityInput.value = 1;
+                saveList();
+            };
+            
+            const increaseBtn = document.createElement('button');
+            increaseBtn.className = 'quantity-btn';
+            increaseBtn.textContent = '+';
+            increaseBtn.onclick = () => {
+                const input = quantityContainer.querySelector('.quantity-input');
+                input.value = parseInt(input.value) + 1;
+                saveList();
+            };
+            
+            quantityContainer.appendChild(decreaseBtn);
+            quantityContainer.appendChild(quantityInput);
+            quantityContainer.appendChild(increaseBtn);
+
+            // Botão conferir
+            const checkBtn = document.createElement('button');
+            checkBtn.className = 'check-btn';
+            checkBtn.title = isChecked ? 'Desmarcar item' : 'Conferir item';
+            checkBtn.innerHTML = '<i class="fas fa-check"></i>';
+            
+            if (isChecked) {
+                checkBtn.classList.add('checked');
+            }
+            
+            checkBtn.onclick = () => {
+                span.classList.toggle('checked');
+                li.classList.toggle('checked');
+                
+                // Atualizar o botão de check
+                if (li.classList.contains('checked')) {
+                    checkBtn.classList.add('checked');
+                    checkBtn.title = 'Desmarcar item';
+                    moveCheckedToBottom(li);
+                } else {
+                    checkBtn.classList.remove('checked');
+                    checkBtn.title = 'Conferir item';
+                    moveItemToTop(li);
+                }
+                
+                saveList();
+            };
+
+            // Botão remover
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.title = 'Remover item';
+            deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+            deleteBtn.onclick = () => {
+                li.style.animation = 'fadeOut 0.3s forwards';
+                setTimeout(() => {
+                    if (li.parentNode) {
+                        li.parentNode.removeChild(li);
+                        saveList();
+                        checkEmptyState();
+                    }
+                }, 300);
+            };
+
+            // Container de controles
+            const itemControls = document.createElement('div');
+            itemControls.className = 'item-controls';
+            itemControls.appendChild(quantityContainer);
+            
+            const actionButtons = document.createElement('div');
+            actionButtons.className = 'action-buttons';
+            actionButtons.appendChild(checkBtn);
+            actionButtons.appendChild(deleteBtn);
+            
+            itemControls.appendChild(actionButtons);
+
+            // Montar o item
+            li.appendChild(imgContainer);
+            li.appendChild(itemInfo);
+            li.appendChild(itemControls);
+
+            // Adicionar no início ou no final dependendo do estado
+            if (isChecked) {
+                lista.appendChild(li);
+            } else {
+                moveItemToTop(li);
+            }
+            
+            // Adicionar animação de fadeIn
+            li.style.animation = 'fadeIn 0.4s ease-out';
+        }
+
+        // Função para obter ícone padrão para itens sem imagem
+        function getIconForItem(name) {
+            const normalized = normalizeKey(name);
+            
+            if (normalized.includes('fruta') || normalized.includes('fruto')) {
+                return 'fas fa-apple-alt';
+            } else if (normalized.includes('verdura')) {
+                return 'fas fa-leaf';
+            } else if (normalized.includes('legume')) {
+                return 'fas fa-carrot';
+            } else if (normalized.includes('pao') || normalized.includes('pão')) {
+                return 'fas fa-bread-slice';
+            } else if (normalized.includes('leite') || normalized.includes('laticinio')) {
+                return 'fas fa-wine-bottle';
+            } else if (normalized.includes('carne') || normalized.includes('frango')) {
+                return 'fas fa-drumstick-bite';
+            }
+            
+            return 'fas fa-shopping-basket';
+        }
+
+        // Função para adicionar novo item (chamada pelo botão)
+        function addItem() {
+            const input = document.getElementById('itemInput');
+            let itemName = input.value.trim();
+
+            if (itemName === '') {
+                showMessage('Por favor, digite o nome do item.');
+                return;
+            }
+
+            // Verificar se o item já existe na lista
+            const existingItem = itemExists(itemName);
+            
+            if (existingItem) {
+                // Se o item já existe, incrementar a quantidade
+                const quantityInput = existingItem.querySelector('.quantity-input');
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+                saveList();
+                
+                // Feedback visual de incremento
+                existingItem.classList.add('highlight');
+                setTimeout(() => {
+                    existingItem.classList.remove('highlight');
+                }, 1000);
+                
+                // Mover o item para o topo da lista se não estiver marcado
+                if (!existingItem.classList.contains('checked')) {
+                    moveItemToTop(existingItem);
+                }
+                
+                showMessage(`Quantidade de ${itemName} aumentada!`);
+            } else {
+                // Se não existe, adicionar um novo item no topo
+                addItemToList(itemName);
+                saveList();
+                
+                // Feedback visual
+                const lista = document.getElementById('listaItens');
+                const newItem = lista.firstChild;
+                newItem.classList.add('highlight');
+                setTimeout(() => {
+                    newItem.classList.remove('highlight');
+                }, 1000);
+                
+                showMessage(`${itemName} adicionado à lista!`);
+            }
+
+            input.value = '';
+            input.focus();
+            checkEmptyState();
+        }
+
+        // Função para exibir mensagem temporária
+        function showMessage(text) {
+            // Remove any existing message
+            const existingMsg = document.getElementById('tempMessage');
+            if (existingMsg) existingMsg.remove();
+            
+            const msg = document.createElement('div');
+            msg.id = 'tempMessage';
+            msg.textContent = text;
+            msg.style.position = 'fixed';
+            msg.style.bottom = '20px';
+            msg.style.left = '50%';
+            msg.style.transform = 'translateX(-50%)';
+            msg.style.backgroundColor = 'var(--primary-dark)';
+            msg.style.color = 'white';
+            msg.style.padding = '12px 25px';
+            msg.style.borderRadius = '30px';
+            msg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            msg.style.zIndex = '1000';
+            msg.style.animation = 'fadeIn 0.3s, fadeOut 0.3s 2s forwards';
+            
+            document.body.appendChild(msg);
+            
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                if (msg.parentNode) {
+                    msg.parentNode.removeChild(msg);
+                }
+            }, 3000);
+        }
+
+        // Função para filtrar itens na lista
+        function filterItems() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const lista = document.getElementById('listaItens');
+            const items = lista.querySelectorAll('li');
+            
+            items.forEach(item => {
+                const itemName = item.querySelector('.item-name').textContent.toLowerCase();
+                if (itemName.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function checkEmptyState() {
+            const lista = document.getElementById('listaItens');
+            const visibleItems = Array.from(lista.children).filter(item => 
+                item.style.display !== 'none'
+            );
+            
+            if (visibleItems.length === 0) {
+                if (!document.querySelector('.empty-state')) {
+                    const emptyMsg = document.createElement('div');
+                    emptyMsg.className = 'empty-state';
+                    emptyMsg.innerHTML = `
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Sua lista está vazia</p>
+                        <p>Adicione itens usando o campo acima</p>
+                    `;
+                    lista.appendChild(emptyMsg);
+                } else {
+                    document.querySelector('.empty-state').textContent = 'Nenhum item encontrado.';
+                }
+            } else {
+                const emptyMsg = document.querySelector('.empty-state');
+                if (emptyMsg) emptyMsg.remove();
+            }
+        }
+
+        function suggestItem(name) {
+            const input = document.getElementById('itemInput');
+            input.value = name;
+            input.focus();
+            showMessage(`Sugestão "${name}" adicionada!`);
+        }
+        
+        function updateStats() {
+            const lista = document.getElementById('listaItens');
+            const items = lista.querySelectorAll('li');
+            
+            let totalItems = 0;
+            let totalQuantity = 0;
+            let checkedItems = 0;
+            
+            items.forEach(item => {
+                totalItems++;
+                if (item.classList.contains('checked')) {
+                    checkedItems++;
+                }
+                const quantity = parseInt(item.querySelector('.quantity-input').value);
+                totalQuantity += quantity;
+            });
+            
+            document.getElementById('totalItems').textContent = totalItems;
+            document.getElementById('totalQuantity').textContent = totalQuantity;
+            document.getElementById('checkedItems').textContent = checkedItems;
+        }
+
+        // Inicializa a lista e verifica estado vazio ao carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            // Adicionar animação de fadeIn ao container
+            document.querySelector('.container').style.animation = 'fadeIn 0.6s ease-out';
+            
+            // Adicionar evento de tecla para o campo de entrada
+            document.getElementById('itemInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addItem();
+                }
+            });
+            
+            // Adicionar evento de tecla para o campo de busca
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    // Foca no campo de adicionar item após buscar
+                    document.getElementById('itemInput').focus();
+                }
+            });
+            
+            // Configurar evento de busca
+            document.getElementById('searchInput').addEventListener('input', function() {
+                filterItems();
+                checkEmptyState();
+            });
+            
+            // Carregar lista salva
+            loadList();
+            
+            // Adicionar animação de fadeIn
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; transform: translateY(0); }
+                    to { opacity: 0; transform: translateY(10px); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
