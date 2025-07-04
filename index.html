@@ -668,468 +668,474 @@
     </div>
 
     <script>
-        // Objeto de imagens dos itens - chaves SEM acento e SEM espaço
-        const itemImages = {
-            'maca': 'https://organicodiniz.com.br/wp-content/uploads/2022/04/Maca-red.png',
-            'banana': 'https://vallefrutas.com.br/wp-content/uploads/banana-nanica.png',
-            'laranja': 'https://apoioentrega.vteximg.com.br/arquivos/ids/875228/2131_0.png?v=638699615920200000',
-            'tomate': 'https://img.freepik.com/fotos-gratis/tomate-isolado_2829-17582.jpg?semt=ais_hybrid&w=740',
-            'alface': 'https://phygital-files.mercafacil.com/good-bom/uploads/produto/alface_crespa_un_7f503cee-428b-478b-b8f0-f0e3f59ebcaa.jpeg',
-            'cenoura': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCCuyird4GPGaxa7AO9plyOLGi_NlwaLN5Uw&s',
-            'cebola': 'https://muffatosupermercados.vtexassets.com/arquivos/ids/370799-800-auto?v=638319619235170000&width=800&height=auto&aspect=true',
-            'batata': 'https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/01325ea5fd7fd4ecab7e209393bf6188.jpg',
-            'ovos': 'https://acdn-us.mitiendanube.com/stores/002/296/660/products/ovo1-6b57de61281a3d3cf016841052104265-1024-1024.jpg',
-            'pao': 'https://superprix.vteximg.com.br/arquivos/ids/213294-600-600/Pao-Frances-Delix-60g--1-unidade-.jpg?v=638188859210930000',
-            'leite': 'https://foodsafetybrazil.org/wp-content/uploads/2023/12/sa_1703631598_Formol_no_Leite_nao.png',
-            'queijo': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk2KV2bOoz9pTpwp3Le1rVhO8ctFZ4kO7n-Q&s',
-            'abacaxi': 'https://cdn.awsli.com.br/600x700/305/305913/produto/10189815/abacaxi-1441a8b7.jpg',
-            'mamao': 'https://www.peterpaiva.com.br/wp-content/uploads/2014/11/FA0385-Papaya.jpg',
-            'pepino': 'https://static.vecteezy.com/system/resources/thumbnails/029/720/727/small_2x/cucumber-transparent-background-png.png',
-            'morango': 'https://static.vecteezy.com/system/resources/thumbnails/039/633/656/small/ai-generated-strawberries-with-strawberries-leaves-on-the-floor-healthy-organic-berry-natural-ingredients-concept-ai-generated-transparency-with-shadow-png.png',
-            'abobrinha': 'https://ibassets.com.br/ib.item.image.large/l-e716c69cf0164c7ea7da04b434812d07.png',
-            'brocolis': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS87cvnFld8h_R11IOohgqX2UiIpvZgZx3M_Q&s'
-        };
+// Objeto de imagens dos itens - chaves SEM acento e SEM espaço
+const itemImages = {
+    'maca': 'https://organicodiniz.com.br/wp-content/uploads/2022/04/Maca-red.png',
+    'banana': 'https://vallefrutas.com.br/wp-content/uploads/banana-nanica.png',
+    'laranja': 'https://apoioentrega.vteximg.com.br/arquivos/ids/875228/2131_0.png?v=638699615920200000',
+    'tomate': 'https://img.freepik.com/fotos-gratis/tomate-isolado_2829-17582.jpg?semt=ais_hybrid&w=740',
+    'alface': 'https://phygital-files.mercafacil.com/good-bom/uploads/produto/alface_crespa_un_7f503cee-428b-478b-b8f0-f0e3f59ebcaa.jpeg',
+    'cenoura': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCCuyird4GPGaxa7AO9plyOLGi_NlwaLN5Uw&s',
+    'cebola': 'https://muffatosupermercados.vtexassets.com/arquivos/ids/370799-800-auto?v=638319619235170000&width=800&height=auto&aspect=true',
+    'batata': 'https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/01325ea5fd7fd4ecab7e209393bf6188.jpg',
+    'ovos': 'https://acdn-us.mitiendanube.com/stores/002/296/660/products/ovo1-6b57de61281a3d3cf016841052104265-1024-1024.jpg',
+    'pao': 'https://superprix.vteximg.com.br/arquivos/ids/213294-600-600/Pao-Frances-Delix-60g--1-unidade-.jpg?v=638188859210930000',
+    'leite': 'https://foodsafetybrazil.org/wp-content/uploads/2023/12/sa_1703631598_Formol_no_Leite_nao.png',
+    'queijo': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk2KV2bOoz9pTpwp3Le1rVhO8ctFZ4kO7n-Q&s',
+    'abacaxi': 'https://cdn.awsli.com.br/600x700/305/305913/produto/10189815/abacaxi-1441a8b7.jpg',
+    'mamao': 'https://www.peterpaiva.com.br/wp-content/uploads/2014/11/FA0385-Papaya.jpg',
+    'pepino': 'https://static.vecteezy.com/system/resources/thumbnails/029/720/727/small_2x/cucumber-transparent-background-png.png',
+    'morango': 'https://static.vecteezy.com/system/resources/thumbnails/039/633/656/small/ai-generated-strawberries-with-strawberries-leaves-on-the-floor-healthy-organic-berry-natural-ingredients-concept-ai-generated-transparency-with-shadow-png.png',
+    'abobrinha': 'https://ibassets.com.br/ib.item.image.large/l-e716c69cf0164c7ea7da04b434812d07.png',
+    'brocolis': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS87cvnFld8h_R11IOohgqX2UiIpvZgZx3M_Q&s'
+};
 
-        function normalizeKey(text) {
-            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "");
+function normalizeKey(text) {
+    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "");
+}
+
+// Função para salvar a lista no localStorage
+function saveList() {
+    const lista = document.getElementById('listaItens');
+    const items = [];
+    
+    // Coletar todos os itens da lista
+    lista.querySelectorAll('li').forEach(li => {
+        const name = li.querySelector('.item-name').textContent;
+        const checked = li.classList.contains('checked');
+        const quantity = li.querySelector('.quantity-input').value;
+        items.push({ name, checked, quantity });
+    });
+    
+    // LOCAL STORAGE: Salva a lista de compras no navegador (persistência entre sessões)
+    localStorage.setItem('shoppingList', JSON.stringify(items));
+    updateStats();
+}
+
+// Função para carregar a lista do localStorage
+function loadList() {
+    // LOCAL STORAGE: Recupera a lista salva do navegador
+    const saved = localStorage.getItem('shoppingList');
+    if (!saved) return;
+    
+    const items = JSON.parse(saved);
+    const lista = document.getElementById('listaItens');
+    
+    // Limpar lista atual
+    lista.innerHTML = '';
+    
+    // Adicionar cada item salvo
+    items.forEach(item => {
+        addItemToList(item.name, item.checked, item.quantity);
+    });
+    
+    checkEmptyState();
+    updateStats();
+}
+
+// Função para verificar se um item já existe na lista
+function itemExists(name) {
+    const lista = document.getElementById('listaItens');
+    const normalizedName = normalizeKey(name);
+    
+    for (const li of lista.querySelectorAll('li')) {
+        const itemName = li.querySelector('.item-name').textContent;
+        if (normalizeKey(itemName) === normalizedName) {
+            return li;
         }
+    }
+    
+    return null;
+}
 
-        // Função para salvar a lista no localStorage
-        function saveList() {
-            const lista = document.getElementById('listaItens');
-            const items = [];
-            
-            // Coletar todos os itens da lista
-            lista.querySelectorAll('li').forEach(li => {
-                const name = li.querySelector('.item-name').textContent;
-                const checked = li.classList.contains('checked');
-                const quantity = li.querySelector('.quantity-input').value;
-                items.push({ name, checked, quantity });
-            });
-            
-            // Salvar no localStorage
-            localStorage.setItem('shoppingList', JSON.stringify(items));
-            updateStats();
+// Função para mover um item para o topo da lista
+function moveItemToTop(itemElement) {
+    const lista = document.getElementById('listaItens');
+    if (lista.firstChild) {
+        lista.insertBefore(itemElement, lista.firstChild);
+    } else {
+        lista.appendChild(itemElement);
+    }
+}
+
+// Função para mover um item marcado para o final da lista
+function moveCheckedToBottom(itemElement) {
+    const lista = document.getElementById('listaItens');
+    lista.appendChild(itemElement);
+}
+
+// Função para adicionar item à lista (com estado de verificação e quantidade)
+function addItemToList(name, isChecked = false, quantity = 1) {
+    const lista = document.getElementById('listaItens');
+    const key = normalizeKey(name);
+    const hasImage = itemImages.hasOwnProperty(key);
+    const imgSrc = hasImage ? itemImages[key] : "";
+    const iconClass = hasImage ? "" : getIconForItem(name);
+
+    // Criar elementos do item
+    const li = document.createElement('li');
+
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'item-img';
+    
+    if (hasImage) {
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = name;
+        imgContainer.appendChild(img);
+    } else {
+        const icon = document.createElement('i');
+        icon.className = iconClass;
+        imgContainer.appendChild(icon);
+    }
+
+    const itemInfo = document.createElement('div');
+    itemInfo.className = 'item-info';
+    
+    const span = document.createElement('span');
+    span.textContent = name;
+    span.className = 'item-name';
+    
+    // Adicionar classe 'checked' se necessário
+    if (isChecked) {
+        span.classList.add('checked');
+        li.classList.add('checked');
+    }
+
+    itemInfo.appendChild(span);
+
+    // Container para quantidade
+    const quantityContainer = document.createElement('div');
+    quantityContainer.className = 'quantity-container';
+    
+    const decreaseBtn = document.createElement('button');
+    decreaseBtn.className = 'quantity-btn';
+    decreaseBtn.textContent = '-';
+    // EVENT LISTENER: Diminuir quantidade do item
+    decreaseBtn.onclick = () => {
+        const input = quantityContainer.querySelector('.quantity-input');
+        if (input.value > 1) {
+            input.value = parseInt(input.value) - 1;
+            saveList();
         }
+    };
+    
+    const quantityInput = document.createElement('input');
+    quantityInput.type = 'number';
+    quantityInput.className = 'quantity-input';
+    quantityInput.value = quantity;
+    quantityInput.min = '1';
+    // EVENT LISTENER: Alteração manual de quantidade
+    quantityInput.onchange = () => {
+        if (quantityInput.value < 1) quantityInput.value = 1;
+        saveList();
+    };
+    
+    const increaseBtn = document.createElement('button');
+    increaseBtn.className = 'quantity-btn';
+    increaseBtn.textContent = '+';
+    // EVENT LISTENER: Aumentar quantidade do item
+    increaseBtn.onclick = () => {
+        const input = quantityContainer.querySelector('.quantity-input');
+        input.value = parseInt(input.value) + 1;
+        saveList();
+    };
+    
+    quantityContainer.appendChild(decreaseBtn);
+    quantityContainer.appendChild(quantityInput);
+    quantityContainer.appendChild(increaseBtn);
 
-        // Função para carregar a lista do localStorage
-        function loadList() {
-            const saved = localStorage.getItem('shoppingList');
-            if (!saved) return;
-            
-            const items = JSON.parse(saved);
-            const lista = document.getElementById('listaItens');
-            
-            // Limpar lista atual
-            lista.innerHTML = '';
-            
-            // Adicionar cada item salvo
-            items.forEach(item => {
-                addItemToList(item.name, item.checked, item.quantity);
-            });
-            
-            checkEmptyState();
-            updateStats();
-        }
-
-        // Função para verificar se um item já existe na lista
-        function itemExists(name) {
-            const lista = document.getElementById('listaItens');
-            const normalizedName = normalizeKey(name);
-            
-            for (const li of lista.querySelectorAll('li')) {
-                const itemName = li.querySelector('.item-name').textContent;
-                if (normalizeKey(itemName) === normalizedName) {
-                    return li;
-                }
-            }
-            
-            return null;
-        }
-
-        // Função para mover um item para o topo da lista
-        function moveItemToTop(itemElement) {
-            const lista = document.getElementById('listaItens');
-            if (lista.firstChild) {
-                lista.insertBefore(itemElement, lista.firstChild);
-            } else {
-                lista.appendChild(itemElement);
-            }
-        }
-
-        // Função para mover um item marcado para o final da lista
-        function moveCheckedToBottom(itemElement) {
-            const lista = document.getElementById('listaItens');
-            lista.appendChild(itemElement);
-        }
-
-        // Função para adicionar item à lista (com estado de verificação e quantidade)
-        function addItemToList(name, isChecked = false, quantity = 1) {
-            const lista = document.getElementById('listaItens');
-            const key = normalizeKey(name);
-            const hasImage = itemImages.hasOwnProperty(key);
-            const imgSrc = hasImage ? itemImages[key] : "";
-            const iconClass = hasImage ? "" : getIconForItem(name);
-
-            // Criar elementos do item
-            const li = document.createElement('li');
-
-            const imgContainer = document.createElement('div');
-            imgContainer.className = 'item-img';
-            
-            if (hasImage) {
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                img.alt = name;
-                imgContainer.appendChild(img);
-            } else {
-                const icon = document.createElement('i');
-                icon.className = iconClass;
-                imgContainer.appendChild(icon);
-            }
-
-            const itemInfo = document.createElement('div');
-            itemInfo.className = 'item-info';
-            
-            const span = document.createElement('span');
-            span.textContent = name;
-            span.className = 'item-name';
-            
-            // Adicionar classe 'checked' se necessário
-            if (isChecked) {
-                span.classList.add('checked');
-                li.classList.add('checked');
-            }
-
-            itemInfo.appendChild(span);
-
-            // Container para quantidade
-            const quantityContainer = document.createElement('div');
-            quantityContainer.className = 'quantity-container';
-            
-            const decreaseBtn = document.createElement('button');
-            decreaseBtn.className = 'quantity-btn';
-            decreaseBtn.textContent = '-';
-            decreaseBtn.onclick = () => {
-                const input = quantityContainer.querySelector('.quantity-input');
-                if (input.value > 1) {
-                    input.value = parseInt(input.value) - 1;
-                    saveList();
-                }
-            };
-            
-            const quantityInput = document.createElement('input');
-            quantityInput.type = 'number';
-            quantityInput.className = 'quantity-input';
-            quantityInput.value = quantity;
-            quantityInput.min = '1';
-            quantityInput.onchange = () => {
-                if (quantityInput.value < 1) quantityInput.value = 1;
-                saveList();
-            };
-            
-            const increaseBtn = document.createElement('button');
-            increaseBtn.className = 'quantity-btn';
-            increaseBtn.textContent = '+';
-            increaseBtn.onclick = () => {
-                const input = quantityContainer.querySelector('.quantity-input');
-                input.value = parseInt(input.value) + 1;
-                saveList();
-            };
-            
-            quantityContainer.appendChild(decreaseBtn);
-            quantityContainer.appendChild(quantityInput);
-            quantityContainer.appendChild(increaseBtn);
-
-            // Botão conferir
-            const checkBtn = document.createElement('button');
-            checkBtn.className = 'check-btn';
-            checkBtn.title = isChecked ? 'Desmarcar item' : 'Conferir item';
-            checkBtn.innerHTML = '<i class="fas fa-check"></i>';
-            
-            if (isChecked) {
-                checkBtn.classList.add('checked');
-            }
-            
-            checkBtn.onclick = () => {
-                span.classList.toggle('checked');
-                li.classList.toggle('checked');
-                
-                // Atualizar o botão de check
-                if (li.classList.contains('checked')) {
-                    checkBtn.classList.add('checked');
-                    checkBtn.title = 'Desmarcar item';
-                    moveCheckedToBottom(li);
-                } else {
-                    checkBtn.classList.remove('checked');
-                    checkBtn.title = 'Conferir item';
-                    moveItemToTop(li);
-                }
-                
-                saveList();
-            };
-
-            // Botão remover
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'delete-btn';
-            deleteBtn.title = 'Remover item';
-            deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
-            deleteBtn.onclick = () => {
-                li.style.animation = 'fadeOut 0.3s forwards';
-                setTimeout(() => {
-                    if (li.parentNode) {
-                        li.parentNode.removeChild(li);
-                        saveList();
-                        checkEmptyState();
-                    }
-                }, 300);
-            };
-
-            // Container de controles
-            const itemControls = document.createElement('div');
-            itemControls.className = 'item-controls';
-            itemControls.appendChild(quantityContainer);
-            
-            const actionButtons = document.createElement('div');
-            actionButtons.className = 'action-buttons';
-            actionButtons.appendChild(checkBtn);
-            actionButtons.appendChild(deleteBtn);
-            
-            itemControls.appendChild(actionButtons);
-
-            // Montar o item
-            li.appendChild(imgContainer);
-            li.appendChild(itemInfo);
-            li.appendChild(itemControls);
-
-            // Adicionar no início ou no final dependendo do estado
-            if (isChecked) {
-                lista.appendChild(li);
-            } else {
-                moveItemToTop(li);
-            }
-            
-            // Adicionar animação de fadeIn
-            li.style.animation = 'fadeIn 0.4s ease-out';
-        }
-
-        // Função para obter ícone padrão para itens sem imagem
-        function getIconForItem(name) {
-            const normalized = normalizeKey(name);
-            
-            if (normalized.includes('fruta') || normalized.includes('fruto')) {
-                return 'fas fa-apple-alt';
-            } else if (normalized.includes('verdura')) {
-                return 'fas fa-leaf';
-            } else if (normalized.includes('legume')) {
-                return 'fas fa-carrot';
-            } else if (normalized.includes('pao') || normalized.includes('pão')) {
-                return 'fas fa-bread-slice';
-            } else if (normalized.includes('leite') || normalized.includes('laticinio')) {
-                return 'fas fa-wine-bottle';
-            } else if (normalized.includes('carne') || normalized.includes('frango')) {
-                return 'fas fa-drumstick-bite';
-            }
-            
-            return 'fas fa-shopping-basket';
-        }
-
-        // Função para adicionar novo item (chamada pelo botão)
-        function addItem() {
-            const input = document.getElementById('itemInput');
-            let itemName = input.value.trim();
-
-            if (itemName === '') {
-                showMessage('Por favor, digite o nome do item.');
-                return;
-            }
-
-            // Verificar se o item já existe na lista
-            const existingItem = itemExists(itemName);
-            
-            if (existingItem) {
-                // Se o item já existe, incrementar a quantidade
-                const quantityInput = existingItem.querySelector('.quantity-input');
-                quantityInput.value = parseInt(quantityInput.value) + 1;
-                saveList();
-                
-                // Feedback visual de incremento
-                existingItem.classList.add('highlight');
-                setTimeout(() => {
-                    existingItem.classList.remove('highlight');
-                }, 1000);
-                
-                // Mover o item para o topo da lista se não estiver marcado
-                if (!existingItem.classList.contains('checked')) {
-                    moveItemToTop(existingItem);
-                }
-                
-                showMessage(`Quantidade de ${itemName} aumentada!`);
-            } else {
-                // Se não existe, adicionar um novo item no topo
-                addItemToList(itemName);
-                saveList();
-                
-                // Feedback visual
-                const lista = document.getElementById('listaItens');
-                const newItem = lista.firstChild;
-                newItem.classList.add('highlight');
-                setTimeout(() => {
-                    newItem.classList.remove('highlight');
-                }, 1000);
-                
-                showMessage(`${itemName} adicionado à lista!`);
-            }
-
-            input.value = '';
-            input.focus();
-            checkEmptyState();
-        }
-
-        // Função para exibir mensagem temporária
-        function showMessage(text) {
-            // Remove any existing message
-            const existingMsg = document.getElementById('tempMessage');
-            if (existingMsg) existingMsg.remove();
-            
-            const msg = document.createElement('div');
-            msg.id = 'tempMessage';
-            msg.textContent = text;
-            msg.style.position = 'fixed';
-            msg.style.bottom = '20px';
-            msg.style.left = '50%';
-            msg.style.transform = 'translateX(-50%)';
-            msg.style.backgroundColor = 'var(--primary-dark)';
-            msg.style.color = 'white';
-            msg.style.padding = '12px 25px';
-            msg.style.borderRadius = '30px';
-            msg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-            msg.style.zIndex = '1000';
-            msg.style.animation = 'fadeIn 0.3s, fadeOut 0.3s 2s forwards';
-            
-            document.body.appendChild(msg);
-            
-            // Remove message after 3 seconds
-            setTimeout(() => {
-                if (msg.parentNode) {
-                    msg.parentNode.removeChild(msg);
-                }
-            }, 3000);
-        }
-
-        // Função para filtrar itens na lista
-        function filterItems() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const lista = document.getElementById('listaItens');
-            const items = lista.querySelectorAll('li');
-            
-            items.forEach(item => {
-                const itemName = item.querySelector('.item-name').textContent.toLowerCase();
-                if (itemName.includes(searchTerm)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        function checkEmptyState() {
-            const lista = document.getElementById('listaItens');
-            const visibleItems = Array.from(lista.children).filter(item => 
-                item.style.display !== 'none'
-            );
-            
-            if (visibleItems.length === 0) {
-                if (!document.querySelector('.empty-state')) {
-                    const emptyMsg = document.createElement('div');
-                    emptyMsg.className = 'empty-state';
-                    emptyMsg.innerHTML = `
-                        <i class="fas fa-shopping-basket"></i>
-                        <p>Sua lista está vazia</p>
-                        <p>Adicione itens usando o campo acima</p>
-                    `;
-                    lista.appendChild(emptyMsg);
-                } else {
-                    document.querySelector('.empty-state').textContent = 'Nenhum item encontrado.';
-                }
-            } else {
-                const emptyMsg = document.querySelector('.empty-state');
-                if (emptyMsg) emptyMsg.remove();
-            }
-        }
-
-        function suggestItem(name) {
-            const input = document.getElementById('itemInput');
-            input.value = name;
-            input.focus();
-            showMessage(`Sugestão "${name}" adicionada!`);
+    // Botão conferir
+    const checkBtn = document.createElement('button');
+    checkBtn.className = 'check-btn';
+    checkBtn.title = isChecked ? 'Desmarcar item' : 'Conferir item';
+    checkBtn.innerHTML = '<i class="fas fa-check"></i>';
+    
+    if (isChecked) {
+        checkBtn.classList.add('checked');
+    }
+    
+    // EVENT LISTENER: Alternar estado de verificação do item
+    checkBtn.onclick = () => {
+        span.classList.toggle('checked');
+        li.classList.toggle('checked');
+        
+        // Atualizar o botão de check
+        if (li.classList.contains('checked')) {
+            checkBtn.classList.add('checked');
+            checkBtn.title = 'Desmarcar item';
+            moveCheckedToBottom(li);
+        } else {
+            checkBtn.classList.remove('checked');
+            checkBtn.title = 'Conferir item';
+            moveItemToTop(li);
         }
         
-        function updateStats() {
-            const lista = document.getElementById('listaItens');
-            const items = lista.querySelectorAll('li');
-            
-            let totalItems = 0;
-            let totalQuantity = 0;
-            let checkedItems = 0;
-            
-            items.forEach(item => {
-                totalItems++;
-                if (item.classList.contains('checked')) {
-                    checkedItems++;
-                }
-                const quantity = parseInt(item.querySelector('.quantity-input').value);
-                totalQuantity += quantity;
-            });
-            
-            document.getElementById('totalItems').textContent = totalItems;
-            document.getElementById('totalQuantity').textContent = totalQuantity;
-            document.getElementById('checkedItems').textContent = checkedItems;
-        }
+        saveList();
+    };
 
-        // Inicializa a lista e verifica estado vazio ao carregar
-        document.addEventListener('DOMContentLoaded', () => {
-            // Adicionar animação de fadeIn ao container
-            document.querySelector('.container').style.animation = 'fadeIn 0.6s ease-out';
-            
-            // Adicionar evento de tecla para o campo de entrada
-            document.getElementById('itemInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    addItem();
-                }
-            });
-            
-            // Adicionar evento de tecla para o campo de busca
-            document.getElementById('searchInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    // Foca no campo de adicionar item após buscar
-                    document.getElementById('itemInput').focus();
-                }
-            });
-            
-            // Configurar evento de busca
-            document.getElementById('searchInput').addEventListener('input', function() {
-                filterItems();
+    // Botão remover
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.title = 'Remover item';
+    deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+    // EVENT LISTENER: Remover item da lista
+    deleteBtn.onclick = () => {
+        li.style.animation = 'fadeOut 0.3s forwards';
+        setTimeout(() => {
+            if (li.parentNode) {
+                li.parentNode.removeChild(li);
+                saveList();
                 checkEmptyState();
-            });
-            
-            // Carregar lista salva
-            loadList();
-            
-            // Adicionar animação de fadeIn
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                @keyframes fadeOut {
-                    from { opacity: 1; transform: translateY(0); }
-                    to { opacity: 0; transform: translateY(10px); }
-                }
+            }
+        }, 300);
+    };
+
+    // Container de controles
+    const itemControls = document.createElement('div');
+    itemControls.className = 'item-controls';
+    itemControls.appendChild(quantityContainer);
+    
+    const actionButtons = document.createElement('div');
+    actionButtons.className = 'action-buttons';
+    actionButtons.appendChild(checkBtn);
+    actionButtons.appendChild(deleteBtn);
+    
+    itemControls.appendChild(actionButtons);
+
+    // Montar o item
+    li.appendChild(imgContainer);
+    li.appendChild(itemInfo);
+    li.appendChild(itemControls);
+
+    // Adicionar no início ou no final dependendo do estado
+    if (isChecked) {
+        lista.appendChild(li);
+    } else {
+        moveItemToTop(li);
+    }
+    
+    // Adicionar animação de fadeIn
+    li.style.animation = 'fadeIn 0.4s ease-out';
+}
+
+// Função para obter ícone padrão para itens sem imagem
+function getIconForItem(name) {
+    const normalized = normalizeKey(name);
+    
+    if (normalized.includes('fruta') || normalized.includes('fruto')) {
+        return 'fas fa-apple-alt';
+    } else if (normalized.includes('verdura')) {
+        return 'fas fa-leaf';
+    } else if (normalized.includes('legume')) {
+        return 'fas fa-carrot';
+    } else if (normalized.includes('pao') || normalized.includes('pão')) {
+        return 'fas fa-bread-slice';
+    } else if (normalized.includes('leite') || normalized.includes('laticinio')) {
+        return 'fas fa-wine-bottle';
+    } else if (normalized.includes('carne') || normalized.includes('frango')) {
+        return 'fas fa-drumstick-bite';
+    }
+    
+    return 'fas fa-shopping-basket';
+}
+
+// Função para adicionar novo item (chamada pelo botão)
+function addItem() {
+    const input = document.getElementById('itemInput');
+    let itemName = input.value.trim();
+
+    if (itemName === '') {
+        showMessage('Por favor, digite o nome do item.');
+        return;
+    }
+
+    // Verificar se o item já existe na lista
+    const existingItem = itemExists(itemName);
+    
+    if (existingItem) {
+        // Se o item já existe, incrementar a quantidade
+        const quantityInput = existingItem.querySelector('.quantity-input');
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+        saveList();
+        
+        // Feedback visual de incremento
+        existingItem.classList.add('highlight');
+        setTimeout(() => {
+            existingItem.classList.remove('highlight');
+        }, 1000);
+        
+        // Mover o item para o topo da lista se não estiver marcado
+        if (!existingItem.classList.contains('checked')) {
+            moveItemToTop(existingItem);
+        }
+        
+        showMessage(`Quantidade de ${itemName} aumentada!`);
+    } else {
+        // Se não existe, adicionar um novo item no topo
+        addItemToList(itemName);
+        saveList();
+        
+        // Feedback visual
+        const lista = document.getElementById('listaItens');
+        const newItem = lista.firstChild;
+        newItem.classList.add('highlight');
+        setTimeout(() => {
+            newItem.classList.remove('highlight');
+        }, 1000);
+        
+        showMessage(`${itemName} adicionado à lista!`);
+    }
+
+    input.value = '';
+    input.focus();
+    checkEmptyState();
+}
+
+// Função para exibir mensagem temporária
+function showMessage(text) {
+    // Remove any existing message
+    const existingMsg = document.getElementById('tempMessage');
+    if (existingMsg) existingMsg.remove();
+    
+    const msg = document.createElement('div');
+    msg.id = 'tempMessage';
+    msg.textContent = text;
+    msg.style.position = 'fixed';
+    msg.style.bottom = '20px';
+    msg.style.left = '50%';
+    msg.style.transform = 'translateX(-50%)';
+    msg.style.backgroundColor = 'var(--primary-dark)';
+    msg.style.color = 'white';
+    msg.style.padding = '12px 25px';
+    msg.style.borderRadius = '30px';
+    msg.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+    msg.style.zIndex = '1000';
+    msg.style.animation = 'fadeIn 0.3s, fadeOut 0.3s 2s forwards';
+    
+    document.body.appendChild(msg);
+    
+    // Remove message after 3 seconds
+    setTimeout(() => {
+        if (msg.parentNode) {
+            msg.parentNode.removeChild(msg);
+        }
+    }, 3000);
+}
+
+// Função para filtrar itens na lista
+function filterItems() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const lista = document.getElementById('listaItens');
+    const items = lista.querySelectorAll('li');
+    
+    items.forEach(item => {
+        const itemName = item.querySelector('.item-name').textContent.toLowerCase();
+        if (itemName.includes(searchTerm)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function checkEmptyState() {
+    const lista = document.getElementById('listaItens');
+    const visibleItems = Array.from(lista.children).filter(item => 
+        item.style.display !== 'none'
+    );
+    
+    if (visibleItems.length === 0) {
+        if (!document.querySelector('.empty-state')) {
+            const emptyMsg = document.createElement('div');
+            emptyMsg.className = 'empty-state';
+            emptyMsg.innerHTML = `
+                <i class="fas fa-shopping-basket"></i>
+                <p>Sua lista está vazia</p>
+                <p>Adicione itens usando o campo acima</p>
             `;
-            document.head.appendChild(style);
-        });
+            lista.appendChild(emptyMsg);
+        } else {
+            document.querySelector('.empty-state').textContent = 'Nenhum item encontrado.';
+        }
+    } else {
+        const emptyMsg = document.querySelector('.empty-state');
+        if (emptyMsg) emptyMsg.remove();
+    }
+}
+
+function suggestItem(name) {
+    const input = document.getElementById('itemInput');
+    input.value = name;
+    input.focus();
+    showMessage(`Sugestão "${name}" adicionada!`);
+}
+        
+function updateStats() {
+    const lista = document.getElementById('listaItens');
+    const items = lista.querySelectorAll('li');
+    
+    let totalItems = 0;
+    let totalQuantity = 0;
+    let checkedItems = 0;
+    
+    items.forEach(item => {
+        totalItems++;
+        if (item.classList.contains('checked')) {
+            checkedItems++;
+        }
+        const quantity = parseInt(item.querySelector('.quantity-input').value);
+        totalQuantity += quantity;
+    });
+    
+    document.getElementById('totalItems').textContent = totalItems;
+    document.getElementById('totalQuantity').textContent = totalQuantity;
+    document.getElementById('checkedItems').textContent = checkedItems;
+}
+
+// Inicializa a lista e verifica estado vazio ao carregar
+document.addEventListener('DOMContentLoaded', () => {
+    // Adicionar animação de fadeIn ao container
+    document.querySelector('.container').style.animation = 'fadeIn 0.6s ease-out';
+    
+    // EVENT LISTENER: Tecla Enter no campo de adicionar item
+    document.getElementById('itemInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addItem();
+        }
+    });
+    
+    // EVENT LISTENER: Tecla Enter no campo de busca
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            // Foca no campo de adicionar item após buscar
+            document.getElementById('itemInput').focus();
+        }
+    });
+    
+    // EVENT LISTENER: Busca em tempo real (input)
+    document.getElementById('searchInput').addEventListener('input', function() {
+        filterItems();
+        checkEmptyState();
+    });
+    
+    // LOCAL STORAGE: Carrega lista salva ao iniciar a página
+    loadList();
+    
+    // Adicionar animação de fadeIn
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(10px); }
+        }
+    `;
+    document.head.appendChild(style);
+});
     </script>
 </body>
 </html>
