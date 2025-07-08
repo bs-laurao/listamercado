@@ -21,7 +21,77 @@
             --text-light: #777;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
+            --dark-bg: #121212;
+    --dark-container: #1e1e1e;
+    --dark-text: #e0e0e0;
+    --dark-text-light: #aaaaaa;
+    --dark-light-bg: #2d2d2d;
+    --dark-gray: #333;
+    --dark-checked: #2d2d2d;
+    --dark-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
+        /* ===== ESTILOS DO MODO ESCURO ===== */
+body.dark-mode {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a1a 100%);
+    color: var(--dark-text);
+}
+
+.dark-mode .container {
+    background-color: var(--dark-container);
+    box-shadow: var(--dark-shadow);
+}
+
+.dark-mode #itemInput,
+.dark-mode #searchInput {
+    background-color: var(--dark-light-bg);
+    color: var(--dark-text);
+    border-color: #444;
+}
+
+.dark-mode li {
+    background-color: var(--dark-container);
+    box-shadow: var(--dark-shadow);
+}
+
+.dark-mode li.checked {
+    background-color: var(--dark-checked);
+}
+
+.dark-mode .item-name.checked {
+    color: var(--dark-text-light);
+}
+
+.dark-mode .footer {
+    color: var(--dark-text-light);
+    border-top-color: #444;
+}
+
+/* Botão de alternância */
+.dark-mode .theme-toggle {
+    color: var(--primary-light);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--primary-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
         
         * {
             box-sizing: border-box;
@@ -598,6 +668,9 @@
             </div>
             <p class="subtitle">Sua lista de mercado saudável e organizada</p>
         </div>
+        <button id="themeToggle" class="theme-toggle">
+            <i class="fas fa-moon"></i> <!-- Ícone inicial (modo claro) -->
+        </button>
         
         <!-- Campo de adicionar itens -->
         <div class="input-container">
@@ -668,6 +741,51 @@
     </div>
 
     <script>
+        function toggleDarkMode() {
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    
+    // Alterna a classe 'dark-mode' no body
+    body.classList.toggle('dark-mode');
+    
+    // Verifica se o modo escuro está ativo
+    const isDarkMode = body.classList.contains('dark-mode');
+    
+    // Muda o ícone (lua/sol)
+    if (isDarkMode) {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Modo escuro ativo → mostra sol
+    } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Modo claro ativo → mostra lua
+    }
+    
+    // Salva no Local Storage
+    localStorage.setItem('darkMode', isDarkMode);
+}
+
+function loadTheme() {
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    
+    // Verifica se há preferência salva
+    const savedMode = localStorage.getItem('darkMode');
+    
+    // Se for 'true', aplica o modo escuro
+    if (savedMode === 'true') {
+        body.classList.add('dark-mode');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        body.classList.remove('dark-mode');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Carrega o tema salvo ao abrir a página
+    loadTheme();
+    
+    // Adiciona o evento de clique no botão
+    document.getElementById('themeToggle').addEventListener('click', toggleDarkMode);
+});
 // Objeto de imagens dos itens - chaves SEM acento e SEM espaço
 const itemImages = {
     'maca': 'https://organicodiniz.com.br/wp-content/uploads/2022/04/Maca-red.png',
