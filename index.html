@@ -739,8 +739,23 @@ body.dark-mode {
             <p>Sua lista é salva automaticamente! ✨</p>
         </div>
     </div>
+    <div class="container">
+        <h2>contar cliques</h2>
+        <button id="contar1">+</button>
+        <button id="contar2">-</button>
+        <P>total cliques<span id="contaclique">0</P>
+        
+    </div>
 
+    
     <script>
+        document.getElementById('contar1').addEventListener('click,function'(){
+            let count = localStorage.getItem('contaclique')|| 0;
+            count=parseInt(count) +1;
+            localStorage.setItem('contaclique',count);
+            document.getElementById('contaclique').textContent = count;
+        });
+
         function toggleDarkMode() {
     const body = document.body;
     const themeToggle = document.getElementById('themeToggle');
